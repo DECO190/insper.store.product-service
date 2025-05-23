@@ -10,7 +10,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductRepository extends CrudRepository<ProductModel, String> {
 
-    public ProductModel findByEmailAndSha256(String email, String sha256);
-    
-    public ProductModel findByEmail(String email);
 }

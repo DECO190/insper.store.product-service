@@ -10,42 +10,28 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductResource implements ProductController {
 
     @Autowired
-    private ProductService accountService;
+    private ProductService productService;
 
     @Override
-    public ResponseEntity<ProductOut> create(ProductIn accountIn) {
-        
-        ProductOut created = ProductOut.builder()
-            .id("")
-            .name("")
-            .price(10f)
-            .unit("aa")
-            .build();
+    public ResponseEntity<ProductOut> create(ProductIn productIn) {
+        Product created = productService.create(productIn);
 
-
-        return ResponseEntity.ok().body(created);
+        return ResponseEntity.ok().body(ProductParser.to(created));
     }
 
     @Override
     public ResponseEntity<List<ProductOut>> findAll() {
-        List<ProductOut> products = List.of(ProductOut.builder()
-            .id("")
-            .name("")
-            .price(10f)
-            .unit("aa")
-            .build());
-        return ResponseEntity.ok().body(products);
+        return ResponseEntity.ok().body(
+            productService.findAll()
+                .stream()
+                .map(ProductParser::to)
+                .toList()
+        );
     }
 
     @Override
     public ResponseEntity<ProductOut> getProductById(String id) {
-        ProductOut product = ProductOut.builder()
-            .id("")
-            .name("")
-            .price(10f)
-            .unit("aa")
-            .build();
-        return ResponseEntity.ok().body(product);
+        return ResponseEntity.ok().body(ProductParser.to(productService.findById(id)));
     }
 
     @Override

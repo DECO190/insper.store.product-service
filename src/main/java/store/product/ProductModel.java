@@ -24,8 +24,8 @@ public class ProductModel {
     @Column(name = "tx_name")
     private String name;
 
-    @Column(name = "tx_price")
-    private Float price;
+    @Column(name = "vl_price")
+    private Double price;
 
     @Column(name = "tx_unit")
     private String unit;
