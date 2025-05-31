@@ -36,6 +36,7 @@ public class ProductResource implements ProductController {
 
     @Override
     public ResponseEntity<Void> deleteProductById(String id) {
-        return ResponseEntity.ok().build();
+        productService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

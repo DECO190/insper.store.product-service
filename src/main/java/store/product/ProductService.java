@@ -47,4 +47,15 @@ public class ProductService {
         return prod.to();
     }
 
+    public void deleteById(String id) {
+        if (id == null || id.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid product ID");
+        }
+
+        if (!productRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
+        }
+
+        productRepository.deleteById(id);
+    }
 }
