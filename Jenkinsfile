@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Dependecies') {
             steps {
-                build job: 'product', wait: true, propagate: true
+                build job: 'product', wait: true
             }
         }
         stage('Build') { 
